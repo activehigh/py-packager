@@ -58,7 +58,7 @@ class PackageAuthorEmailCollector(ValueCollector):
         return super().collect(inp)
 
 class PackageLicenseCollector(ValueCollector):
-    question = "License?"
+    question = "License? (only support MIT for now)"
     key = 'license'
     def collect(self, inp):
         return super().collect(inp)
