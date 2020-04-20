@@ -41,7 +41,7 @@ class FileGenerator():
             os.makedirs("./tests")
 
         if not os.path.exists("./docs"):
-            os.makedirs("./tests")
+            os.makedirs("./docs")
 
     def generate_setup(self, prompts: list):
         with open("setup-test.py", "w") as f:
