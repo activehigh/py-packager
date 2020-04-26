@@ -40,7 +40,7 @@ class FileGenerator():
             os.makedirs("./docs")
 
     def generate_setup(self, prompts: list):
-        with open("setup.py", "w") as f:
+        with open("setup-test.py", "w") as f:
             # write first part
             content = files('py_packager').joinpath('data/setup').read_text()            
             f.writelines(content)  
@@ -60,16 +60,36 @@ class FileGenerator():
         
 
     def generate_license(self, prompts):
+        # value for key, name and year
         name = ""
+        key = ""
         for x in prompts:
+            if x.key == 'license':
+                key = x.answer
             if x.key == 'author':
                 name = x.answer
+        year = str(datetime.now().year)
 
-        with open('LICENSE', 'w') as f:
-            content = files('py_packager').joinpath('data/LICENSE').read_text()
-            formatted = content.replace('[YEAR]', str(datetime.now().year)).replace('[AUTHOR]', name)
-            f.writelines(formatted)
-            f.close()
+        license_object = self.__get_license_by_key(key)
+
+        if 'body' in license_object:
+            with open('LICENSE', 'w') as f:
+                content = license_object['body']
+                formatted = content.replace('[year]', str(datetime.now().year)).replace('[fullname]', name)
+                f.writelines(formatted)
+                f.close()
+        else:
+            # no license found
+            print('Could kind license by key at (https://api.github.com/licenses): ' + key)
+
+
+    # Downloads license information based on provided key
+    def __get_license_by_key(self, key):
+          
+        import requests
+        
+        response = requests.get('https://api.github.com/licenses/' + key)
+        return json.loads(response.text)
 
 
     def generate(self, prompts: list):

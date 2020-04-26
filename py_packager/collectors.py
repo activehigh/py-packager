@@ -39,7 +39,7 @@ class PackageDescriptionCollector(ValueCollector):
     def collect(self, inp):
         return super().collect(inp)
 
-class PackageUrlCollector(ValueCollector):
+class PackageUrlCollector(ValueCollector):    
     question = "Repository Url?"
     key = 'url'
     def collect(self, inp):
@@ -58,7 +58,7 @@ class PackageAuthorEmailCollector(ValueCollector):
         return super().collect(inp)
 
 class PackageLicenseCollector(ValueCollector):
-    question = "License? (only support MIT for now)"
+    question = "License?"
     key = 'license'
     def collect(self, inp):
         return super().collect(inp)
