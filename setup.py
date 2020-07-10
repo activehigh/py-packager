@@ -13,7 +13,7 @@ with open("requirements.txt", "r") as f:
 
 valueDict = {
     'name':'py-packager',
-    'version':'0.1.0a0',
+    'version':'0.1.0a1',
     'description':'A simple python package init tools',
     'url':'https://github.com/Activehigh/py-packager',
     'author':'Mahmudul Islam',
