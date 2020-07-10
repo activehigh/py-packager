@@ -3,7 +3,7 @@ name: Py-Packager - Deploy
 on:
   push:
     branches:
-      - init
+      - feature/init
 
 jobs:
   deploy:
