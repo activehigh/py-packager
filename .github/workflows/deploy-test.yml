@@ -21,7 +21,7 @@ jobs:
       working-directory: .
 
     - name: Build Distribution
-      run: python setup.py sdist
+      run: python setup.py sdist bdist_wheel
       working-directory: .
 
     - name: Publish package
