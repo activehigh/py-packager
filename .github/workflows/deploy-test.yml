@@ -1,0 +1,33 @@
+name: Py-Packager - Deploy
+
+on:
+  push:
+    branches:
+      - feature/init
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install tools
+      run: pip install setuptools wheel twine bumpversion
+      working-directory: .
+
+    - name: Build Distribution
+      run: python setup.py sdist bdist_wheel
+      working-directory: .
+
+    - name: Publish package
+      env:
+        TWINE_USERNAME: ${{ secrets.TEST_TWINE_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TEST_TWINE_PASSWORD }}
+      run: twine upload --verbose --repository testpypi dist/* --non-interactive
+      working-directory: .
+

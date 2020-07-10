@@ -1,0 +1,33 @@
+name: Py-Packager - Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Twine
+      run: pip install twine
+      working-directory: .
+
+    - name: Build Distribution
+      run: python setup.py sdist
+      working-directory: .
+
+    - name: Publish package
+      env:
+        TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+      run: twine upload --verbose --repository pypi dist/* --non-interactive
+      working-directory: .
+
