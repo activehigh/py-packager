@@ -28,6 +28,6 @@ jobs:
       env:
         TWINE_USERNAME: ${{ secrets.TEST_TWINE_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.TEST_TWINE_PASSWORD }}
-      run: twine upload --repository testpypi dist/* --non-interactive
+      run: twine upload --verbose --repository testpypi dist/* --non-interactive
       working-directory: .
 
