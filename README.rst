@@ -7,6 +7,18 @@ A simple lightweight tool to generate standard python package structure for you.
 Install from pypi with -
 
 ```
-pip install py-pacakger
+pip install py-packager
 ```
+
+
+# Usage
+
+Very simple just go into package source folder and run 
+
+```
+py-packager
+```
+
+and continue with the questions. At the end it will generate a standard package structure for you.
+
 
