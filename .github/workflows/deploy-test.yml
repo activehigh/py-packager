@@ -25,6 +25,6 @@ jobs:
       working-directory: .
 
     - name: Publish package
-      run: twine upload --repository testpypi dist/*
+      run: twine upload --repository testpypi dist/* --non-interactive
       working-directory: .
 
