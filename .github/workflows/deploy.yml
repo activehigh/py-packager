@@ -25,6 +25,9 @@ jobs:
       working-directory: .
 
     - name: Publish package
-      run: twine upload dist/*
+      env:
+        TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+      run: twine upload --verbose --repository pypi dist/* --non-interactive
       working-directory: .
 

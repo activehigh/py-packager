@@ -3,7 +3,7 @@ name: Py-Packager - Deploy
 on:
   push:
     branches:
-      - init
+      - feature/init
 
 jobs:
   deploy:
@@ -25,6 +25,9 @@ jobs:
       working-directory: .
 
     - name: Publish package
-      run: twine upload --repository testpypi dist/*
+      env:
+        TWINE_USERNAME: ${{ secrets.TEST_TWINE_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TEST_TWINE_PASSWORD }}
+      run: twine upload --verbose --repository testpypi dist/* --non-interactive
       working-directory: .
 
