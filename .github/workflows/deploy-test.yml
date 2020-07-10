@@ -16,8 +16,8 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install Twine
-      run: pip install twine
+    - name: Install tools
+      run: pip install setuptools wheel twine bumpversion
       working-directory: .
 
     - name: Build Distribution
